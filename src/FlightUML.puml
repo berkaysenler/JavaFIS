@@ -1,0 +1,105 @@
+@startuml UML
+class Flight {
+    -String airlineName
+    -String flightNumber
+    -String flightOrigin
+    -String flightDestination
+    -double airfare
+    -String departureTime
+    -String arrivalTime
+    -double flightDuration
+    -int availableSeats
+    -double distance
+    -String gateNumber
+    -String seatClass
+    -String flightDate
+    +getAirlineName()
+    +getFlightNumber()
+    +getFlightOrigin()
+    +getFlightDestination()
+    +getAirfare()
+    +getDepartureTime()
+    +getArrivalTime()
+    +getFlightDuration()
+    +getAvailableSeats()
+    +getDistance()
+    +getGateNumber()
+    +getSeatClass()
+    +getFlightDate()
+}
+
+class PassengerFlight {
+    -boolean mealService
+    -boolean inFlightEntertainment
+    +getMealService()
+    +getInFlightEntertainment()
+    +toString()
+}
+
+class CargoFlight {
+    -double cargoWeightCapacity
+    -String cargoType
+    +getCargoWeightCapacity()
+    +getCargoType()
+    +toString()
+}
+
+class PrivateFlight {
+    -String ownership
+    -String passengerName
+    -String planeType
+    +getOwnership()
+    +getPassengerName()
+    +getPlaneType()
+    +toString()
+}
+
+class FlightComparator {
+    -int sortOption
+    +compare(Flight f1, Flight f2)
+}
+
+class FlightForm1 {
+    -JTable flightTable
+    -DefaultTableModel tableModel
+    -JButton displayButton
+    -JTextField searchField
+    -JButton searchButton
+    -List<Flight> flights
+    -JComboBox<String> searchCriteriaComboBox
+    -JComboBox<String> flightTypeComboBox
+    +initializeComponents()
+    +initializeSearchCriteriaDropdown()
+    +initializeFlightTable()
+    +initializeDisplayButton()
+    +initializeSearchField()
+    +initializeAddFlightPanel()
+    +filterFlights()
+    +populateTable()
+    +updateInputFieldsVisibility()
+    +addNewFlight()
+}
+
+class FlightTest {
+    +main(String[] args)
+    -int readInt(Scanner scanner, String prompt)
+    -String readString(Scanner scanner, String prompt)
+    -String readIntStr(Scanner scanner, String prompt)
+    -double readDouble(Scanner scanner, String prompt)
+    -String readTime(Scanner scanner, String prompt, String previousTime)
+    -boolean isValidTimeFormat(String time)
+    -boolean isValidTimeOrder(String departure, String arrival)
+    -int convertToMinutes(String time)
+    -String readEquality(Scanner scanner, String prompt, String previousValue)
+    -String readDate(Scanner scanner, String prompt)
+    -boolean readBoolean(Scanner scanner, String prompt)
+    +getSortHeader(int sortOption)
+}
+
+Flight <|-- PassengerFlight
+Flight <|-- CargoFlight
+Flight <|-- PrivateFlight
+FlightForm1 "1" --> "*" Flight : has
+FlightComparator --> Flight
+FlightTest --> Flight
+@enduml
